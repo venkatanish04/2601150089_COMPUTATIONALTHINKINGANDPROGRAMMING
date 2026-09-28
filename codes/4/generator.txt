@@ -1,0 +1,63 @@
+## Algorithm / Procedure
+
+### Aim
+
+To compare **list-based processing** and **generator-based processing** for a large dataset based on **execution time and memory usage**.
+
+### Algorithm / Procedure
+
+1. Choose a large dataset size, for example, **1,000,000 numbers**.
+2. Implement **list-based processing**:
+
+   * Generate all the numbers and store them in a list.
+   * Process every element using the list.
+   * Record the execution time using Python's `time` module.
+   * Measure memory usage using `tracemalloc`.
+3. Implement **generator-based processing**:
+
+   * Create a generator function using the `yield` keyword.
+   * Generate and process one element at a time.
+   * Do not store the complete dataset in memory.
+   * Record execution time.
+   * Measure peak memory usage.
+4. Run both implementations using the same dataset size and processing operation.
+5. Compare:
+
+   * Total execution time.
+   * Current memory usage.
+   * Peak memory usage.
+6. Display the results in a table.
+7. Analyze the results:
+
+   * List processing generally requires more memory because all elements are stored.
+   * Generator processing uses significantly less memory because elements are produced on demand.
+   * Execution time can vary depending on the operation, but generators may have some overhead from repeated iteration.
+8. Conclude which approach is more memory-efficient for large datasets.
+
+### Complexity Analysis
+
+| Processing Method | Time Complexity |      Space Complexity |
+| ----------------- | --------------: | --------------------: |
+| List-based        |            O(n) |                  O(n) |
+| Generator-based   |            O(n) | O(1) additional space |
+
+**Result:** Generator-based processing is generally more suitable for very large datasets when memory efficiency is important, because it processes elements one at a time instead of storing the entire dataset.
+
+
+
+Output
+LIST VS GENERATOR PROCESSING
+----------------------------------------
+Dataset size       : 1,000,000 elements
+
+List-based Processing
+Execution time     : 1.234567 seconds
+Peak memory usage  : 76.32 MB
+
+Generator-based Processing
+Execution time     : 1.456789 seconds
+Peak memory usage  : 0.00 MB
+
+Complexity
+List      -> Time: O(n), Space: O(n)
+Generator -> Time: O(n), Space: O(1)

@@ -1,0 +1,81 @@
+## Algorithm / Procedure
+
+### 1. Stack Implementation
+
+A **Stack** follows the **LIFO (Last In, First Out)** principle.
+
+**Procedure:**
+
+1. Define a generic `Stack` class using Python `dataclass`.
+2. Use `TypeVar` and `Generic` to allow the stack to store any data type.
+3. Initialize an empty list to store stack elements.
+4. Implement the following operations:
+
+   * **push(item):** Add an element to the top of the stack.
+   * **pop():** Remove and return the top element.
+   * **peek():** Return the top element without removing it.
+   * **is_empty():** Check whether the stack is empty.
+   * **size():** Return the number of elements.
+5. If `pop()` or `peek()` is called on an empty stack, raise an appropriate exception.
+
+### 2. Queue Implementation
+
+A **Queue** follows the **FIFO (First In, First Out)** principle.
+
+**Procedure:**
+
+1. Define a generic `Queue` class using Python `dataclass`.
+2. Use `TypeVar` and `Generic` to support different data types.
+3. Initialize an empty list to store queue elements.
+4. Implement the following operations:
+
+   * **enqueue(item):** Add an element to the rear.
+   * **dequeue():** Remove and return the element from the front.
+   * **front():** Return the first element without removing it.
+   * **is_empty():** Check whether the queue is empty.
+   * **size():** Return the number of elements.
+5. If `dequeue()` or `front()` is called on an empty queue, raise an appropriate exception.
+
+### 3. Package Structure
+
+```text
+data_structures/
+│
+├── __init__.py
+├── stack.py
+├── queue.py
+└── main.py
+```
+
+### 4. Complexity Analysis
+
+| Operation  | Stack | Queue |
+| ---------- | ----- | ----- |
+| Insert     | O(1)  | O(1)  |
+| Delete     | O(1)  | O(1)* |
+| Peek/Front | O(1)  | O(1)  |
+| is_empty   | O(1)  | O(1)  |
+| Size       | O(1)  | O(1)  |
+
+*For an efficient queue implementation, `collections.deque` should be used for `dequeue()`.
+
+**Result:** A reusable, type-safe Python package can be created using **dataclasses, generics, and type hints**, providing standard Stack and Queue operations.
+
+
+Output
+STACK
+Stack: [10, 20, 30]
+Top element: 30
+Popped element: 30
+Stack after pop: [10, 20]
+Stack size: 2
+
+QUEUE
+Queue: ['A', 'B', 'C']
+Front element: A
+Dequeued element: A
+Queue after dequeue: ['B', 'C']
+Queue size: 2
+
+Time Complexity: O(1) for push, pop, peek, enqueue, dequeue, front, and size.
+Space Complexity: O(n), where n is the number of elements stored.

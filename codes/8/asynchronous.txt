@@ -1,0 +1,122 @@
+## Algorithm / Procedure: Asynchronous Web Crawler
+
+### Aim
+
+To develop an **asynchronous web crawler** using Python's `asyncio` and `aiohttp` with **retry handling**, and compare its execution time with a **sequential web crawler**.
+
+### Procedure
+
+1. **Start the program.**
+
+2. Import the required modules:
+
+   * `asyncio` for asynchronous execution.
+   * `aiohttp` for asynchronous HTTP requests.
+   * `time` for measuring execution time.
+
+3. Define a list of URLs to be crawled.
+
+4. **Implement the Sequential Crawler:**
+
+   * Iterate through each URL one by one.
+   * Send an HTTP request using a synchronous HTTP client.
+   * Wait for the response before processing the next URL.
+   * Record the total execution time.
+
+5. **Implement the Asynchronous Crawler:**
+
+   * Create an asynchronous function using `async def`.
+   * Create an `aiohttp.ClientSession`.
+   * Use `asyncio.create_task()` to create concurrent crawling tasks.
+   * Use `asyncio.gather()` to execute multiple requests concurrently.
+
+6. **Implement Retry Mechanism:**
+
+   * Attempt to request each URL.
+   * If a request fails, wait for a short delay.
+   * Retry the request up to a predefined number of attempts.
+   * Increase the delay between retries if required.
+   * Return an error message if all retry attempts fail.
+
+7. Use an asynchronous **semaphore** to limit the number of simultaneous requests and avoid excessive server load.
+
+8. Execute the asynchronous crawler using:
+
+   ```text
+   asyncio.run()
+   ```
+
+9. Record the asynchronous crawler's execution time.
+
+10. Compare the execution times of:
+
+    * Sequential crawler
+    * Asynchronous crawler
+
+11. Display the URLs successfully crawled and their HTTP status codes.
+
+12. Calculate the performance improvement:
+
+```text
+Speedup = Sequential Time / Asynchronous Time
+```
+
+### Comparison
+
+| Feature         | Sequential            | Asynchronous                   |
+| --------------- | --------------------- | ------------------------------ |
+| Execution       | One request at a time | Multiple requests concurrently |
+| Library         | `requests`            | `aiohttp`                      |
+| Waiting         | Blocks execution      | Non-blocking                   |
+| Retry           | Sequential retry      | Asynchronous retry             |
+| Suitable for    | Small number of URLs  | Large number of URLs           |
+| I/O utilization | Lower                 | Higher                         |
+
+### Complexity
+
+For **N URLs**:
+
+* **Sequential:** approximately `O(N × T)` where `T` is average network response time.
+* **Asynchronous:** approximately `O(ceil(N/C) × T)` where `C` is the concurrency limit.
+
+The actual performance depends on network latency, server response time, concurrency limit, and retry failures.
+
+**Result:** The asynchronous crawler can process multiple network requests concurrently, reducing waiting time compared with a sequential implementation, while retries improve reliability when requests temporarily fail.
+
+
+Output
+============================================================
+SEQUENTIAL WEB CRAWLER
+============================================================
+Sequential: https://example.com -> 200
+Sequential: https://httpbin.org/get -> 200
+Sequential: https://www.python.org -> 200
+Sequential: https://www.google.com -> 200
+Sequential: https://httpbin.org/status/200 -> 200
+
+============================================================
+ASYNCHRONOUS WEB CRAWLER
+============================================================
+Async: https://example.com -> 200
+Async: https://httpbin.org/get -> 200
+Async: https://www.python.org -> 200
+Async: https://www.google.com -> 200
+Async: https://httpbin.org/status/200 -> 200
+
+============================================================
+PERFORMANCE COMPARISON
+============================================================
+Sequential Time   : 2.3512 seconds
+Asynchronous Time : 0.8421 seconds
+Speedup            : 2.79x
+
+Note: Actual execution times will vary depending on your internet connection and the response time of the websites.
+
+Key Features
+asyncio → asynchronous execution
+aiohttp → asynchronous HTTP requests
+asyncio.gather() → concurrent requests
+asyncio.Semaphore() → controls concurrency
+Retry mechanism → retries failed requests up to 3 times
+time.perf_counter() → measures execution time
+requests → sequential baseline

@@ -1,0 +1,95 @@
+## Algorithm / Procedure: Merge Sort using Divide and Conquer
+
+**Algorithm: MERGE-SORT(A, low, high)**
+
+1. Start with an unsorted array `A` of `N` elements.
+2. If `low < high`, calculate the middle position:
+
+   $$
+   mid = \lfloor (low + high)/2 \rfloor
+   $$
+3. Divide the array into two halves:
+
+   * Left half: `A[low ... mid]`
+   * Right half: `A[mid+1 ... high]`
+4. Recursively apply **Merge Sort** to the left half.
+5. Recursively apply **Merge Sort** to the right half.
+6. Merge the two sorted halves using the **MERGE** procedure.
+7. During merging:
+
+   * Compare the first unprocessed elements of both halves.
+   * Copy the smaller element into the temporary array.
+   * Continue until one half is completely processed.
+   * Copy the remaining elements from the other half.
+8. Copy the merged elements back into the original array.
+9. The array is now sorted.
+
+### MERGE Procedure
+
+```text
+MERGE(A, low, mid, high)
+
+1. Create temporary array B.
+2. Set i = low, j = mid + 1, k = low.
+3. While i <= mid and j <= high:
+      If A[i] <= A[j]:
+          B[k] = A[i]
+          i = i + 1
+      Else:
+          B[k] = A[j]
+          j = j + 1
+      k = k + 1
+
+4. Copy remaining elements from left half:
+      While i <= mid:
+          B[k] = A[i]
+          i = i + 1
+          k = k + 1
+
+5. Copy remaining elements from right half:
+      While j <= high:
+          B[k] = A[j]
+          j = j + 1
+          k = k + 1
+
+6. Copy B[low...high] back to A[low...high].
+```
+
+genui{"learning_viz":{"type_id":"MERGE_SORT","initial_values":{"value1":38,"value2":12,"value3":27,"value4":43,"value5":9,"value6":31,"value7":18,"value8":25}}}
+
+### Time Complexity
+
+Merge Sort divides the problem into two equal subproblems and takes **O(N)** time to merge them.
+
+The recurrence is:
+
+$$
+T(N)=2T(N/2)+O(N)
+$$
+
+Using the Master Theorem:
+
+$$
+\boxed{T(N)=O(N\log N)}
+$$
+
+| Case             | Time Complexity |
+| ---------------- | --------------- |
+| Best Case        | **O(N log N)**  |
+| Average Case     | **O(N log N)**  |
+| Worst Case       | **O(N log N)**  |
+| Space Complexity | **O(N)**        |
+
+**Result:** Merge Sort successfully sorts the given array using the divide-and-conquer technique, with a time complexity of **O(N log N)** in all cases.
+Sample Input
+Enter the number of elements: 8
+Enter the elements: 38 12 27 43 9 31 18 25
+Sample Output
+Original Array: [38, 12, 27, 43, 9, 31, 18, 25]
+Sorted Array: [9, 12, 18, 25, 27, 31, 38, 43]
+
+Time Complexity:
+Best Case    : O(n log n)
+Average Case : O(n log n)
+Worst Case   : O(n log n)
+Space        : O(n)

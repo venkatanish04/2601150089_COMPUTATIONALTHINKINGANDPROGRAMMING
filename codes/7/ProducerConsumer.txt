@@ -1,0 +1,113 @@
+## Algorithm / Procedure: Producer–Consumer Application
+
+### Aim
+
+To develop a **Producer–Consumer application** using Python **threading, multiprocessing, and synchronization primitives**.
+
+### Procedure
+
+1. **Start the program.**
+
+2. Import the required Python modules:
+
+   * `threading`
+   * `multiprocessing`
+   * `queue`
+   * `time`
+
+3. Create a **shared bounded buffer** to store produced items.
+
+4. Create synchronization primitives:
+
+   * **Lock/Mutex** to protect shared resources.
+   * **Semaphore** to control the number of empty and filled buffer positions.
+   * **Condition/Queue** to coordinate producers and consumers.
+
+5. **Producer operation:**
+
+   * Generate an item.
+   * Acquire an available-buffer semaphore.
+   * Acquire the lock.
+   * Insert the item into the buffer.
+   * Release the lock.
+   * Signal that an item is available.
+   * Repeat until all required items are produced.
+
+6. **Consumer operation:**
+
+   * Wait until an item is available.
+   * Acquire the lock.
+   * Remove an item from the buffer.
+   * Release the lock.
+   * Release the empty-buffer semaphore.
+   * Process the consumed item.
+   * Repeat until all items are consumed.
+
+7. **Threading implementation:**
+
+   * Create producer and consumer threads.
+   * Start all threads.
+   * Use `join()` to wait for their completion.
+
+8. **Multiprocessing implementation:**
+
+   * Create a process-safe queue using `multiprocessing.Queue`.
+   * Create producer and consumer processes.
+   * Start the processes.
+   * Use `join()` to wait for completion.
+
+9. Use synchronization primitives to ensure:
+
+   * No two workers modify the shared buffer incorrectly.
+   * The producer does not exceed buffer capacity.
+   * The consumer does not consume from an empty buffer.
+   * Data is processed safely.
+
+10. Display the produced and consumed items.
+
+11. Compare the two approaches:
+
+* **Threading:** lightweight and suitable for I/O-bound tasks.
+* **Multiprocessing:** uses separate processes and can execute CPU-bound work in parallel.
+
+12. **Stop the program.**
+
+### Synchronization Primitives Used
+
+| Primitive   | Purpose                                             |
+| ----------- | --------------------------------------------------- |
+| `Lock`      | Protects shared data                                |
+| `Semaphore` | Controls available buffer slots                     |
+| `Queue`     | Safely transfers data between producer and consumer |
+| `Thread`    | Executes concurrent tasks within a process          |
+| `Process`   | Executes tasks using separate processes             |
+| `join()`    | Waits for workers to finish                         |
+
+### Result
+
+The Producer–Consumer problem is successfully implemented using **threading and multiprocessing**. Synchronization primitives ensure safe communication between producers and consumers and prevent race conditions and buffer overflow/underflow.
+
+
+Output
+===== THREADING =====
+Thread Producer 1: Produced 100
+Thread Consumer 1: Consumed 100
+Thread Producer 1: Produced 101
+Thread Consumer 1: Consumed 101
+Thread Producer 1: Produced 102
+Thread Consumer 1: Consumed 102
+...
+Threading completed.
+
+===== MULTIPROCESSING =====
+Process Producer: Produced 1
+Process Consumer: Consumed 1
+Process Producer: Produced 2
+Process Consumer: Consumed 2
+...
+Multiprocessing completed.
+
+Producer-Consumer program completed successfully.
+Complexity
+Time Complexity: O(n)
+Space Complexity: O(b), where b is the buffer size.

@@ -1,0 +1,92 @@
+## Algorithm / Procedure
+
+### Aim
+
+To implement a **Student/Employee data model** using Python **dataclasses** and compare it with a **traditional class implementation**.
+
+### Procedure
+
+1. **Start the program.**
+
+2. Import the `dataclass` and `asdict` functions from Python's `dataclasses` module.
+
+3. **Create a Student model using `@dataclass`:**
+
+   * Define attributes such as:
+
+     * `student_id`
+     * `name`
+     * `course`
+     * `marks`
+   * Python automatically provides methods such as `__init__()` and `__repr__()`.
+
+4. **Create an Employee model using `@dataclass`:**
+
+   * Define attributes such as:
+
+     * `employee_id`
+     * `name`
+     * `department`
+     * `salary`
+
+5. **Create traditional class implementations:**
+
+   * Define `TraditionalStudent`.
+   * Define `TraditionalEmployee`.
+   * Explicitly write the `__init__()` methods.
+   * Optionally define `__repr__()` methods manually.
+
+6. Create objects for both implementations using the same data.
+
+7. Display the objects and their attributes.
+
+8. Convert dataclass objects into dictionaries using `asdict()`.
+
+9. Compare both implementations based on:
+
+   * Amount of code required.
+   * Automatic initialization.
+   * Readability.
+   * Representation of objects.
+   * Ease of maintenance.
+
+10. Display the comparison results.
+
+11. **Stop the program.**
+
+### Comparison
+
+| Feature         | Dataclass               | Traditional Class        |
+| --------------- | ----------------------- | ------------------------ |
+| `__init__()`    | Automatically generated | Must be written manually |
+| `__repr__()`    | Automatically generated | Must be written manually |
+| Code length     | Shorter                 | Longer                   |
+| Readability     | High                    | Moderate                 |
+| Data conversion | `asdict()` available    | Must implement manually  |
+| Best suited for | Data models             | Complex business logic   |
+
+### Result
+
+The experiment demonstrates that **dataclasses provide a concise and readable way to implement data models**, while traditional classes provide more manual control and are useful when additional custom behavior is required.
+
+output
+===== DATACLASS IMPLEMENTATION =====
+Student: Student(student_id=101, name='Anish', course='CSE', marks=88.5)
+Employee: Employee(employee_id=501, name='Venkat', department='IT', salary=50000.0)
+
+Dataclass Student Dictionary:
+{'student_id': 101, 'name': 'Anish', 'course': 'CSE', 'marks': 88.5}
+
+Dataclass Employee Dictionary:
+{'employee_id': 501, 'name': 'Venkat', 'department': 'IT', 'salary': 50000.0}
+
+===== TRADITIONAL CLASS IMPLEMENTATION =====
+Student: TraditionalStudent(student_id=101, name='Anish', course='CSE', marks=88.5)
+Employee: TraditionalEmployee(employee_id=501, name='Venkat', department='IT', salary=50000.0)
+
+===== COMPARISON =====
+1. Dataclass requires less code.
+2. Dataclass automatically generates __init__().
+3. Dataclass automatically generates __repr__().
+4. Dataclass provides asdict() for easy conversion.
+5. Traditional classes provide more manual control.

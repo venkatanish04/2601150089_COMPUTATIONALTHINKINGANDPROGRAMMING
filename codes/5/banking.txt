@@ -1,0 +1,104 @@
+## Algorithm / Procedure: Banking Management System
+
+### Aim
+
+To develop a **Banking Management System** in Python demonstrating **abstraction, inheritance, encapsulation, and full type hints**.
+
+### Algorithm / Procedure
+
+1. **Start the program.**
+
+2. Import the required modules:
+
+   * `ABC` and `abstractmethod` from `abc`.
+   * Required typing classes such as `List` and `Optional`.
+
+3. Create an **abstract base class `BankAccount`**:
+
+   * Define common attributes such as:
+
+     * Account number
+     * Account holder name
+     * Balance
+   * Define abstract methods:
+
+     * `deposit()`
+     * `withdraw()`
+   * Define common methods:
+
+     * `get_balance()`
+     * `display_details()`
+
+4. Create a **`SavingsAccount` class** that inherits from `BankAccount`:
+
+   * Add savings-specific functionality such as interest calculation.
+   * Implement the abstract `deposit()` and `withdraw()` methods.
+   * Allow withdrawal only when sufficient balance is available.
+
+5. Create a **`CurrentAccount` class** that inherits from `BankAccount`:
+
+   * Add an overdraft limit.
+   * Implement `deposit()` and `withdraw()`.
+   * Allow withdrawal up to the permitted overdraft limit.
+
+6. Create a **`Bank` class**:
+
+   * Maintain a collection of bank accounts.
+   * Implement methods to:
+
+     * Create an account.
+     * Search for an account.
+     * Deposit money.
+     * Withdraw money.
+     * Display account details.
+
+7. Use **type hints** for all:
+
+   * Variables
+   * Function parameters
+   * Return values
+   * Class attributes
+
+8. In the main program:
+
+   * Create a bank object.
+   * Create savings and current accounts.
+   * Perform deposits and withdrawals.
+   * Display account information.
+
+9. Handle invalid operations such as:
+
+   * Invalid account number.
+   * Negative deposit amount.
+   * Withdrawal exceeding the permitted balance.
+   * Invalid account operations.
+
+10. Display the final account details and balances.
+
+11. **Stop the program.**
+
+### OOP Concepts Demonstrated
+
+| Concept           | Implementation                                                   |
+| ----------------- | ---------------------------------------------------------------- |
+| **Abstraction**   | `BankAccount` abstract class                                     |
+| **Inheritance**   | `SavingsAccount` and `CurrentAccount` inherit from `BankAccount` |
+| **Encapsulation** | Account data and operations are grouped inside classes           |
+| **Polymorphism**  | Different account types implement `withdraw()` differently       |
+| **Type Hinting**  | Parameters, variables, attributes and return values are typed    |
+
+### Result
+
+The Banking Management System demonstrates **abstraction and inheritance** using an abstract `BankAccount` class and specialized `SavingsAccount` and `CurrentAccount` subclasses, with **full Python type hints** for improved readability and reliability.
+
+
+Output
+===== SAVINGS ACCOUNT =====
+Account Number : 1001
+Account Holder : Anish
+Balance        : ₹13520.00
+
+===== CURRENT ACCOUNT =====
+Account Number : 1002
+Account Holder : Venkat
+Balance        : ₹14000.00
