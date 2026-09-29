@@ -1,0 +1,261 @@
+## Algorithm / Procedure
+
+### Aim
+
+To perform **AI-assisted code review, refactoring, and testing** of an existing Python project using an AI coding assistant such as **GitHub Copilot, Cursor, or Claude Code**, and document the areas where AI assistance was successful and where manual intervention was required.
+
+### Procedure
+
+1. **Select an existing Python project**
+
+   * Identify the Python files to be reviewed.
+   * Ensure the project can be executed and tested before making changes.
+
+2. **Create a baseline**
+
+   * Run the existing application.
+   * Execute the existing test suite.
+   * Record the initial results, errors, execution time, and code-quality issues.
+
+3. **Configure the AI coding assistant**
+
+   * Open the project in GitHub Copilot, Cursor, or Claude Code.
+   * Provide the project context and ask the AI to review the code.
+   * Ask it to identify:
+
+     * Bugs
+     * Code duplication
+     * Poor naming
+     * Missing type hints
+     * Unnecessary complexity
+     * Exception-handling issues
+     * Performance problems
+     * Missing tests
+
+4. **Perform AI-assisted code review**
+
+   * Ask the AI to explain each identified issue.
+   * Categorize findings as:
+
+     * Critical
+     * Moderate
+     * Minor
+   * Verify every AI suggestion manually before applying it.
+
+5. **Perform refactoring**
+
+   * Ask the AI to refactor the identified problematic sections.
+   * Improve:
+
+     * Function structure
+     * Variable and function names
+     * Type hints
+     * Code reuse
+     * Readability
+     * Error handling
+   * Preserve the original functionality.
+
+6. **Review AI-generated refactoring**
+
+   * Compare the original and refactored implementations.
+   * Check that the AI did not:
+
+     * Change required behavior
+     * Remove important functionality
+     * Introduce new bugs
+     * Make unsupported assumptions.
+
+7. **Develop additional tests**
+
+   * Ask the AI to generate unit tests for the refactored code.
+   * Include:
+
+     * Normal cases
+     * Boundary cases
+     * Invalid inputs
+     * Exception cases
+     * Integration cases.
+
+8. **Run the test suite**
+
+```bash
+pytest -v
+```
+
+9. **Perform static analysis**
+
+```bash
+mypy .
+```
+
+10. **Compare before and after**
+
+    * Compare test results.
+    * Compare code readability.
+    * Compare complexity.
+    * Check whether previously identified issues were resolved.
+
+11. **Identify successful AI assistance**
+
+    * Document areas where AI correctly:
+
+      * Found bugs
+      * Suggested improvements
+      * Generated useful tests
+      * Reduced code duplication
+      * Improved readability.
+
+12. **Identify manual intervention**
+
+    * Document cases where human review was necessary.
+    * Examples include:
+
+      * Incorrect AI assumptions
+      * Business-logic decisions
+      * Fixing incorrect generated code
+      * Handling unexpected edge cases
+      * Rejecting unnecessary refactoring.
+
+13. **Create an AI review report**
+
+```text id="e1j5sf"
+AI-Assisted Code Review
+        │
+        ▼
+Existing Python Project
+        │
+        ▼
+Baseline Testing
+        │
+        ▼
+AI Code Review
+        │
+        ├── Bugs
+        ├── Code Quality
+        ├── Performance
+        └── Missing Tests
+        │
+        ▼
+AI-Assisted Refactoring
+        │
+        ▼
+Manual Code Review
+        │
+        ├── Accept AI Changes
+        └── Correct/Reject Changes
+        │
+        ▼
+Automated Testing
+        │
+        ▼
+Before vs After Comparison
+        │
+        ▼
+AI Success & Manual Intervention Report
+```
+
+### AI Review Documentation Format
+
+Create an `AI_REVIEW.md` file:
+
+```markdown
+# AI-Assisted Code Review Report
+
+## AI Tool
+GitHub Copilot / Cursor / Claude Code
+
+## Project
+Existing Python Project
+
+## Initial Review
+The AI reviewed the source code and identified
+potential bugs, code duplication, missing type hints,
+and opportunities for refactoring.
+
+## AI Successes
+- Identified duplicated code.
+- Suggested meaningful function names.
+- Added type hints.
+- Generated additional unit tests.
+- Identified missing edge cases.
+
+## Manual Intervention
+- Verified all AI-generated suggestions.
+- Corrected an incorrect refactoring suggestion.
+- Added project-specific validation.
+- Reviewed generated tests.
+- Confirmed that application behavior was unchanged.
+
+## Testing
+
+Command:
+
+pytest -v
+
+Result:
+
+All tests passed.
+
+## Static Type Checking
+
+Command:
+
+mypy .
+
+Result:
+
+No type errors found.
+
+## Final Assessment
+
+The AI assistant improved code readability and testing
+coverage, but manual review was required to validate
+AI-generated changes and preserve the intended behavior.
+```
+
+### Result
+
+The Python project is successfully **reviewed, refactored, and tested with AI assistance**. The process documents both the **successful contributions of AI** and the **areas requiring manual developer intervention**, demonstrating that AI can accelerate software development while human review remains essential for correctness and project-specific decisions.
+
+
+
+Run the Program
+
+Install Pytest:
+
+pip install pytest
+
+Run the tests:
+
+pytest -v
+Expected Output
+test_student.py::test_total_marks PASSED
+test_student.py::test_average_marks PASSED
+test_student.py::test_grade PASSED
+test_student.py::test_invalid_marks PASSED
+test_student.py::test_negative_marks PASSED
+test_student.py::test_empty_name PASSED
+test_student.py::test_add_student PASSED
+test_student.py::test_duplicate_student PASSED
+test_student.py::test_remove_student PASSED
+test_student.py::test_student_not_found PASSED
+
+========================
+10 passed
+========================
+AI-Assisted Review Summary
+AI SUCCEEDED:
+✓ Added type hints
+✓ Identified code duplication
+✓ Improved function structure
+✓ Added validation
+✓ Generated unit tests
+✓ Generated integration tests
+✓ Added edge-case tests
+
+MANUAL INTERVENTION:
+✓ Verified AI-generated code
+✓ Checked grade calculation
+✓ Verified validation rules
+✓ Reviewed generated tests
+✓ Confirmed original functionality was preserved

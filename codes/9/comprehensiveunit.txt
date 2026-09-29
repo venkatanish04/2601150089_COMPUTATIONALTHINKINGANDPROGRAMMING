@@ -1,0 +1,171 @@
+## Algorithm / Procedure: Unit and Integration Testing using Pytest and Hypothesis
+
+### Aim
+
+To develop **comprehensive unit and integration tests** for a Python application using **Pytest** and **Hypothesis**, including normal cases, edge cases, invalid inputs, and property-based testing.
+
+### Procedure
+
+1. **Start the program.**
+
+2. Create the Python application to be tested.
+
+   * Implement functions/classes containing the application logic.
+   * Keep the application code separate from the test code.
+
+3. Install the required testing frameworks:
+
+```bash
+pip install pytest hypothesis
+```
+
+4. Create a test directory:
+
+```text
+project/
+│
+├── app.py
+│
+└── tests/
+    ├── test_unit.py
+    └── test_integration.py
+```
+
+5. **Write unit tests using Pytest:**
+
+   * Import the functions/classes from the application.
+   * Test each function independently.
+   * Test normal inputs.
+   * Test boundary values.
+   * Test invalid inputs.
+   * Use `assert` statements to verify expected results.
+   * Use `pytest.raises()` to verify expected exceptions.
+
+6. **Use Pytest fixtures:**
+
+   * Create reusable test data or objects.
+   * Use the `@pytest.fixture` decorator.
+   * Pass fixtures as arguments to test functions.
+
+7. **Use parameterized tests:**
+
+   * Test the same function with multiple input values.
+   * Use `@pytest.mark.parametrize()`.
+
+8. **Implement property-based testing using Hypothesis:**
+
+   * Import `given` from `hypothesis`.
+   * Import appropriate strategies such as `integers()`, `lists()`, and `text()`.
+   * Generate many different test inputs automatically.
+   * Verify that the application satisfies expected properties for all generated inputs.
+
+9. **Write integration tests:**
+
+   * Test multiple application components together.
+   * Verify that data flows correctly between components.
+   * Test realistic end-to-end operations.
+   * Verify the final output against expected results.
+
+10. Run the complete test suite:
+
+```bash
+pytest
+```
+
+11. Run with detailed output:
+
+```bash
+pytest -v
+```
+
+12. Analyze the test results:
+
+* `PASSED` → Test completed successfully.
+* `FAILED` → Application behavior differs from the expected result.
+* `ERROR` → Test or application encountered an unexpected error.
+
+13. Fix any failures in the application.
+
+14. Run the tests again until all tests pass.
+
+### Testing Strategy
+
+| Test Type              | Purpose                            | Tool       |
+| ---------------------- | ---------------------------------- | ---------- |
+| Unit Testing           | Test individual functions          | Pytest     |
+| Parameterized Testing  | Test multiple predefined inputs    | Pytest     |
+| Exception Testing      | Test invalid operations            | Pytest     |
+| Fixture Testing        | Reuse test setup                   | Pytest     |
+| Property-Based Testing | Generate many inputs automatically | Hypothesis |
+| Integration Testing    | Test multiple components together  | Pytest     |
+
+### Example Test Flow
+
+```text
+Application
+     │
+     ▼
+Unit Tests
+     │
+     ├── Normal Cases
+     ├── Boundary Cases
+     └── Invalid Cases
+     │
+     ▼
+Hypothesis Tests
+     │
+     └── Automatically Generated Inputs
+     │
+     ▼
+Integration Tests
+     │
+     └── Multiple Components Together
+     │
+     ▼
+Pytest Test Report
+```
+
+### Result
+
+The application is tested comprehensively using **Pytest for unit and integration testing** and **Hypothesis for property-based testing**. This approach helps identify incorrect behavior, edge cases, invalid inputs, and unexpected failures across a wide range of automatically generated inputs.
+
+
+output:============================= test session starts =============================
+
+test_bank.py::test_deposit PASSED
+test_bank.py::test_multiple_deposits PASSED
+test_bank.py::test_deposit_zero PASSED
+test_bank.py::test_deposit_negative PASSED
+test_bank.py::test_withdraw PASSED
+test_bank.py::test_withdraw_entire_balance PASSED
+test_bank.py::test_withdraw_more_than_balance PASSED
+test_bank.py::test_withdraw_zero PASSED
+test_bank.py::test_withdraw_negative PASSED
+test_bank.py::test_deposit_multiple_values PASSED
+test_bank.py::test_deposit_preserves_balance PASSED
+test_bank.py::test_withdraw_decreases_balance PASSED
+test_bank.py::test_create_account PASSED
+test_bank.py::test_transfer PASSED
+test_bank.py::test_transfer_insufficient_balance PASSED
+test_bank.py::test_duplicate_account PASSED
+test_bank.py::test_unknown_account PASSED
+
+============================= 17 passed =============================
+
+3. Install Dependencies
+
+Open the terminal in your project directory:
+
+pip install pytest hypothesis
+4. Project Structure
+banking_project/
+│
+├── bank.py
+│
+└── test_bank.py
+5. Run the Tests
+pytest
+
+For detailed output:
+
+pytest -v

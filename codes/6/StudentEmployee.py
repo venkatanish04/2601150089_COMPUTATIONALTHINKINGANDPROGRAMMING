@@ -1,10 +1,4 @@
 from dataclasses import dataclass, asdict
-
-
-# =====================================================
-# STUDENT USING DATACLASS
-# =====================================================
-
 @dataclass
 class Student:
     student_id: int
@@ -12,22 +6,12 @@ class Student:
     course: str
     marks: float
 
-
-# =====================================================
-# EMPLOYEE USING DATACLASS
-# =====================================================
-
 @dataclass
 class Employee:
     employee_id: int
     name: str
     department: str
     salary: float
-
-
-# =====================================================
-# STUDENT USING TRADITIONAL CLASS
-# =====================================================
 
 class TraditionalStudent:
     def __init__(
@@ -50,12 +34,6 @@ class TraditionalStudent:
             f"course='{self.course}', "
             f"marks={self.marks})"
         )
-
-
-# =====================================================
-# EMPLOYEE USING TRADITIONAL CLASS
-# =====================================================
-
 class TraditionalEmployee:
     def __init__(
         self,
@@ -77,12 +55,6 @@ class TraditionalEmployee:
             f"department='{self.department}', "
             f"salary={self.salary})"
         )
-
-
-# =====================================================
-# MAIN PROGRAM
-# =====================================================
-
 def main() -> None:
 
     # Dataclass objects
@@ -115,8 +87,6 @@ def main() -> None:
         50000.0
     )
 
-    # Display Dataclass objects
-    print("===== DATACLASS IMPLEMENTATION =====")
     print("Student:", student)
     print("Employee:", employee)
 

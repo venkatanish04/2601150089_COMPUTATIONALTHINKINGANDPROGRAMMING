@@ -1,0 +1,212 @@
+## Algorithm / Procedure
+
+### Aim
+
+To configure **mypy, Docker, and GitHub Actions CI/CD** for an existing Python project to perform static type checking, containerization, automated testing, and continuous integration.
+
+### Procedure
+
+1. **Start with the existing Python project.**
+
+2. Verify the project structure and ensure that the application contains Python source files and test files.
+
+3. **Configure mypy:**
+
+   * Install mypy:
+
+     ```bash
+     pip install mypy
+     ```
+   * Create a `mypy.ini` or configure mypy in `pyproject.toml`.
+   * Specify the Python version and type-checking options.
+   * Add type hints to functions, variables, parameters, and return values.
+   * Run:
+
+     ```bash
+     mypy .
+     ```
+   * Fix all reported type errors.
+
+4. **Create a Dockerfile:**
+
+   * Select an appropriate Python base image.
+   * Set the working directory.
+   * Copy the project files into the container.
+   * Install dependencies.
+   * Specify the command required to run the application.
+
+5. **Create `.dockerignore`:**
+
+   * Exclude unnecessary files such as:
+
+     * `.git`
+     * `__pycache__`
+     * `.venv`
+     * test cache files
+
+6. **Build the Docker image:**
+
+   ```bash
+   docker build -t python-project .
+   ```
+
+7. **Run the Docker container:**
+
+   ```bash
+   docker run python-project
+   ```
+
+8. **Configure GitHub Actions:**
+
+   * Create:
+
+     ```text
+     .github/workflows/ci.yml
+     ```
+   * Define the workflow to run when code is pushed or a pull request is created.
+   * Set up a Python environment.
+   * Install project dependencies.
+   * Run mypy.
+   * Run Pytest.
+   * Build the Docker image.
+
+9. **Commit and push the configuration files:**
+
+   ```bash
+   git add .
+   git commit -m "Configure mypy Docker and CI/CD"
+   git push
+   ```
+
+10. **Verify GitHub Actions:**
+
+    * Open the repository on GitHub.
+    * Go to **Actions**.
+    * Select the CI workflow.
+    * Verify that all stages complete successfully.
+
+### Workflow
+
+```text
+Developer
+    │
+    ▼
+Write / Modify Code
+    │
+    ▼
+     Git Push
+    │
+    ▼
+GitHub Actions
+    │
+    ├── Install Dependencies
+    │
+    ├── Run mypy
+    │
+    ├── Run Pytest
+    │
+    └── Build Docker Image
+    │
+    ▼
+All Checks Passed
+    │
+    ▼
+CI/CD Success
+```
+
+### Tools Required
+
+| Tool           | Purpose                      |
+| -------------- | ---------------------------- |
+| Python         | Application development      |
+| mypy           | Static type checking         |
+| Pytest         | Automated testing            |
+| Docker         | Application containerization |
+| Git            | Version control              |
+| GitHub Actions | CI/CD automation             |
+
+### Result
+
+The existing Python project is configured with **mypy for static type checking, Docker for containerization, and GitHub Actions for automated CI/CD**, ensuring that code is checked and tested automatically whenever changes are pushed to the repository.
+
+
+Code: mypy + Docker + GitHub Actions CI/CD
+
+Assuming your existing project looks like this:
+
+python-project/
+│
+├── app.py
+├── test_app.py
+├── requirements.txt
+├── mypy.ini
+├── Dockerfile
+├── .dockerignore
+└── .github/
+    └── workflows/
+        └── ci.yml
+        8. Test Locally
+
+Run:
+
+python app.py
+
+Output:
+
+Hello, Anish!
+Total: 150
+
+Run tests:
+
+pytest -v
+
+Expected:
+
+============================= test session starts =============================
+
+test_app.py::test_calculate_total PASSED
+test_app.py::test_empty_list PASSED
+test_app.py::test_greet PASSED
+
+============================== 3 passed ==============================
+
+Run type checking:
+
+mypy .
+
+Expected:
+
+Success: no issues found
+9. Build Docker Image
+docker build -t python-project .
+
+Run it:
+
+docker run --rm python-project
+
+Output:
+
+Hello, Anish!
+Total: 150
+10. Push to GitHub
+git add .
+git commit -m "Configure mypy Docker and GitHub Actions CI/CD"
+git push origin main
+
+Then open your GitHub repository → Actions.
+
+The workflow will automatically perform:
+
+Git Push
+   ↓
+GitHub Actions
+   ↓
+Install Dependencies
+   ↓
+mypy Type Checking
+   ↓
+Pytest
+   ↓
+Docker Build
+   ↓
+CI/CD PASSED

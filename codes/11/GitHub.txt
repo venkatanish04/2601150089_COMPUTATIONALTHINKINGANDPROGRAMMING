@@ -1,0 +1,197 @@
+## Algorithm / Procedure
+
+### Aim
+
+To configure **mypy, Docker, and GitHub Actions CI/CD** for an existing Python project to perform type checking, automated testing, and containerized deployment.
+
+### Procedure
+
+1. **Start with the existing Python project.**
+
+2. **Install required dependencies:**
+
+   ```bash
+   pip install mypy pytest
+   ```
+
+3. Create a `requirements.txt` file and add:
+
+   ```text
+   mypy
+   pytest
+   ```
+
+4. **Configure mypy:**
+
+   * Create a `mypy.ini` file.
+   * Specify the Python version.
+   * Enable strict type checking.
+   * Add type hints to the Python source code.
+   * Run:
+
+     ```bash
+     mypy .
+     ```
+   * Fix all reported type errors.
+
+5. **Configure Docker:**
+
+   * Create a `Dockerfile`.
+   * Select a Python base image.
+   * Set the working directory.
+   * Copy `requirements.txt`.
+   * Install dependencies.
+   * Copy the application source code.
+   * Specify the command to start the application.
+
+6. Create a `.dockerignore` file to exclude unnecessary files such as:
+
+   ```text
+   __pycache__
+   .git
+   .venv
+   .pytest_cache
+   ```
+
+7. **Build the Docker image:**
+
+   ```bash
+   docker build -t python-project .
+   ```
+
+8. **Run the Docker container:**
+
+   ```bash
+   docker run --rm python-project
+   ```
+
+9. **Configure GitHub Actions:**
+
+   * Create the directory:
+
+     ```text
+     .github/workflows/
+     ```
+   * Create a workflow file such as `ci.yml`.
+   * Configure it to execute whenever code is pushed or a pull request is created.
+
+10. Configure the CI pipeline to:
+
+    * Check out the repository.
+    * Install Python.
+    * Install dependencies.
+    * Run `mypy`.
+    * Run `pytest`.
+    * Build the Docker image.
+
+11. **Commit and push the configuration:**
+
+    ```bash
+    git add .
+    git commit -m "Configure CI/CD with mypy and Docker"
+    git push origin main
+    ```
+
+12. Open the GitHub repository and navigate to **Actions**.
+
+13. Verify that all CI stages pass successfully.
+
+### Workflow
+
+```text
+Developer
+    │
+    ▼
+Modify Python Code
+    │
+    ▼
+Git Push / Pull Request
+    │
+    ▼
+GitHub Actions
+    │
+    ├── Setup Python
+    ├── Install Dependencies
+    ├── Run mypy
+    ├── Run Pytest
+    └── Build Docker Image
+    │
+    ▼
+All Checks Passed
+    │
+    ▼
+CI/CD Successful
+```
+
+### Result
+
+The existing Python project is successfully configured with **mypy for static type checking, Docker for containerization, and GitHub Actions for automated CI/CD**, allowing every code change to be automatically checked, tested, and container-built.
+
+
+8. Test Locally
+
+Install dependencies:
+
+pip install -r requirements.txt
+
+Run the application:
+
+python app.py
+
+Output:
+
+Hello, Anish!
+Result: 30
+
+Run mypy:
+
+mypy .
+
+Expected:
+
+Success: no issues found in 2 source files
+
+Run Pytest:
+
+pytest -v
+
+Expected:
+
+test_app.py::test_add PASSED
+test_app.py::test_greet PASSED
+test_app.py::test_add_zero PASSED
+
+3 passed
+9. Build and Run Docker
+docker build -t python-project .
+
+Then:
+
+docker run --rm python-project
+
+Output:
+
+Hello, Anish!
+Result: 30
+10. Push to GitHub
+git add .
+git commit -m "Configure mypy Docker and GitHub Actions"
+git push origin main
+
+GitHub Actions will automatically execute:
+
+Git Push
+   ↓
+GitHub Actions
+   ↓
+Install Dependencies
+   ↓
+mypy
+   ↓
+Pytest
+   ↓
+Docker Build
+   ↓
+CI/CD Completed
+
+Result: The project is configured with mypy type checking, Pytest testing, Docker containerization, and GitHub Actions CI/CD automation.
